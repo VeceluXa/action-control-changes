@@ -7,10 +7,10 @@ inputs:
   changed-files:  # id of input
     description: 'All changed files in pull request'
     required: true
-  path:
-    description: 'Path to cd'
+  nesting:
+    description: 'Number of nested folders to ignore'
     required: false
-    default: ''
+    default: '0'
 outputs:
   time: # id of output
     description: 'The time we greeted you'
