@@ -8,16 +8,15 @@ jobs:
     name: control changed files
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v14.6
+      - name: get-paths
+        run: | 
+          echo "JSON=$(gh pr view XXX --json files -q '.files[].path')" >> GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check changed files
         uses: ./
         with:
-          changed-files: ${{steps.changed-files.outputs.all_changed_files}}
+          changed-files: ${{steps.cget-paths.outputs.JSON}}
 
       
 
