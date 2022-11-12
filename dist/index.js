@@ -9698,35 +9698,26 @@ try {
 
   // Get number of nested folders
   const nesting = core.getInput('nesting');
-  // const nesting = 1;
+  console.log(`Number of nested folders: ${nesting}`);
 
   // Split string in array
   const changedFiles = changedFilesString.trim().split(/\s+/);
+  console.log("Changed files:");
   console.log(changedFiles);
 
   const firstPath = getFolderName(changedFiles[0], nesting);
   console.log(`File[${0}] folder: ${firstPath}`);
 
-  let isGood = true;
-
   for (let i = 1; i < changedFiles.length; i++) {
     let tempPath = getFolderName(changedFiles[i], nesting);
     console.log(`File[${i}] folder: ${tempPath}`);
     if (tempPath != firstPath) {
-        isGood = false;
-        break;
+        throw `Folders ${firstPath} and ${tempPath} are different!`
     }
   }
 
-  // If folders are different throw error
-  if (isGood == false) {
-    throw new Error();
-  }
-
-  console.log(changedFiles);
-  console.log(defaultPath);
-  
 } catch (error) {
+  console.log(e);
   core.setFailed(error.message);
 }
 
