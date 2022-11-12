@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
       - name: get-paths
         run: | 
-          echo "JSON=$(gh pr view XXX --json files -q '.files[].path')" >> GITHUB_ENV
+          echo "JSON=$(gh pr view XXX --json files -q '.files[].path')" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check changed files
