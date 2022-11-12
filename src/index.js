@@ -4,15 +4,19 @@ const github = require('@actions/github');
 try {
   // Get all changed files in string
   const changedFilesString = core.getInput('changed-files');
+  // const changedFilesString = '1/1_1/file.txt 1/1_2/file.txt';
+  
 
   // Get path
   const defaultPath = core.getInput('path');
 
   // Get number of nested folders
   const nesting = core.getInput('nesting');
+  // const nesting = 1;
 
   // Split string in array
   const changedFiles = changedFilesString.trim().split(/\s+/);
+  console.log(changedFiles);
 
   const firstPath = getFolderName(changedFiles[0], nesting);
   console.log(`File[${0}] folder: ${firstPath}`);

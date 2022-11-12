@@ -20,7 +20,7 @@ jobs:
         uses: ./
         with:
           changed-files: ${{steps.changed-files.outputs.all_changed_files}}
-          nesting: '1'
+          nesting: 1
 
       
 
