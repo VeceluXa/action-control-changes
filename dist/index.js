@@ -9717,7 +9717,7 @@ try {
   }
 
 } catch (error) {
-  console.log(e);
+  console.log(error);
   core.setFailed(error.message);
 }
 
