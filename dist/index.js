@@ -9688,16 +9688,55 @@ const core = __nccwpck_require__(6398);
 const github = __nccwpck_require__(174);
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  // Get all changed files in string
+  const changedFilesString = core.getInput('changed-files');
+  // const changedFilesString = '1/1_1/file.txt 1/1_2/file.txt';
+  
+
+  // Get path
+  const defaultPath = core.getInput('path');
+
+  // Get number of nested folders
+  const nesting = core.getInput('nesting');
+  // const nesting = 1;
+
+  // Split string in array
+  const changedFiles = changedFilesString.trim().split(/\s+/);
+  console.log(changedFiles);
+
+  const firstPath = getFolderName(changedFiles[0], nesting);
+  console.log(`File[${0}] folder: ${firstPath}`);
+
+  let isGood = true;
+
+  for (let i = 1; i < changedFiles.length; i++) {
+    let tempPath = getFolderName(changedFiles[i], nesting);
+    console.log(`File[${i}] folder: ${tempPath}`);
+    if (tempPath != firstPath) {
+        isGood = false;
+        break;
+    }
+  }
+
+  // If folders are different throw error
+  if (isGood == false) {
+    throw new Error();
+  }
+
+  console.log(changedFiles);
+  console.log(defaultPath);
+  
 } catch (error) {
   core.setFailed(error.message);
+}
+
+function getFolderName(file, nesting) {
+  const filePath = Object.values(file.trim().split('/'));
+  if (nesting > filePath.length) {
+      return;
+  } else {
+      return filePath[nesting]
+  }
 }
 })();
 
