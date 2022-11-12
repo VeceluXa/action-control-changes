@@ -1,10 +1,16 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Control changed files'3
+on:
+  pull_request:
+    branches:
+      master
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  changed-files:  # id of input
+    description: 'All changed files in pull request'
     required: true
-    default: 'World'
+  path:
+    description: 'Path to cd'
+    required: false
+    default: ''
 outputs:
   time: # id of output
     description: 'The time we greeted you'
