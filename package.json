@@ -1,8 +1,8 @@
 {
   "name": "action-control-changes",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.2.0",
+  "description": "GitHub Action that allows to check if only one nested subfolder was changed.",
+  "main": "dist/index.js",
   "scripts": {
     "build": "ncc build src/index.js --license licenses.txt",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/VeceluXa/action-control-changes.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["GitHub Actions", "CI/CD"],
+  "author": "Danilov Fyodor",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/VeceluXa/action-control-changes/issues"
   },
