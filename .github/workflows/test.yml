@@ -17,7 +17,7 @@ jobs:
         uses: tj-actions/changed-files@v14.6
 
       - name: Check changed files
-        uses: ./
+        uses: veceluxa/action-control-changes@master
         with:
           changed-files: ${{steps.changed-files.outputs.all_changed_files}}
           nesting: 1
