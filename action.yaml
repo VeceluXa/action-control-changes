@@ -1,4 +1,4 @@
-name: 'Control changed files'3
+name: 'Control changed files'
 on:
   pull_request:
     branches:
